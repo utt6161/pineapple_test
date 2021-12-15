@@ -1,11 +1,14 @@
 var path = require('path');
 var HtmlWebpackPlugin =  require('html-webpack-plugin');
+const tailwindcss = require('tailwindcss')
+const autoprefixer = require('autoprefixer')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
     entry : './src/index.tsx',
     output : {
         path : path.resolve(__dirname , 'dist'),
-        filename: 'index.bundle.js'
+        filename: '[name].bundle.js'
     },
     resolve: {
         extensions: ['.js', '.jsx','.ts', '.tsx']
@@ -21,7 +24,15 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader']
+                use: [MiniCssExtractPlugin.loader, 'css-loader', { // 'style-loader' conflicts with minicssextracter, bru
+                    loader: 'postcss-loader', // postcss loader needed for tailwindcss
+                    options: {
+                        postcssOptions: {
+                            ident: 'postcss',
+                            plugins: [tailwindcss, autoprefixer],
+                        },
+                    },
+                }]
             }
         ]
     },
@@ -32,7 +43,11 @@ module.exports = {
     plugins : [
         new HtmlWebpackPlugin ({
             template : './public/index.html'
-        })
+        }),
+        new MiniCssExtractPlugin({
+            filename: 'src/styles/[name].[contenthash].css',
+            chunkFilename: '[id].[contenthash].css',
+        }),
     ]
 
 };
