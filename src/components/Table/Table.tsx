@@ -15,11 +15,12 @@ const Table = (props: DataProps) => {
     const allChecked = useSelector(selectIfAllChecked)
 
     return(
-        <div className="flex-col m-auto">
-                <div className="py-2">
-                        <div className=" max-w-full">
-                            <div className="border-b flex flex-row justify-around ">
-                                <div className=" text-sm text-gray-900 font-light xl:px-6 px-2 py-4 whitespace-nowrap relative">
+        <div className="flex flex-col">
+                <div className="py-2 overflow-x-auto">
+                        <table className="table-auto border-collapse w-full">
+                            <thead className="border-b">
+                            <tr>
+                                <th scope="col" className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4 whitespace-nowrap relative">
                                     <label>
                                         <input
                                             className="m-auto appearance-none
@@ -45,33 +46,34 @@ const Table = (props: DataProps) => {
                                             </svg>
                                         </div>}
                                     </label>
-                                </div>
-                                <div className="text-sm font-medium text-gray-900 xl:px-6 px-2 py-4 text-left">
+                                </th>
+                                <th scope="col" className="text-sm font-medium text-gray-900 xl:px-6 px-2 py-4 text-left">
                                     #
-                                </div>
-                                <div className="text-sm font-medium text-gray-900 xl:px-6 px-2 py-4 text-left">
+                                </th>
+                                <th scope="col" className="text-sm font-medium text-gray-900 xl:px-6 px-2 py-4 text-left">
                                     Наименование
-                                </div>
-                                <div className="text-sm font-medium text-gray-900 xl:px-6 px-2 py-4 text-left">
+                                </th>
+                                <th scope="col" className="text-sm font-medium text-gray-900 xl:px-6 px-2 py-4 text-left">
                                     Адрес
-                                </div>
-                                <div className="text-sm font-medium text-gray-900 xl:px-6 px-2 py-4 text-left">
+                                </th>
+                                <th scope="col" className="text-sm font-medium text-gray-900 xl:px-6 px-2 py-4 text-left">
                                     ОГРН
-                                </div>
-                                <div className="text-sm font-medium text-gray-900 xl:px-6 px-2 py-4 text-left">
+                                </th>
+                                <th scope="col" className="text-sm font-medium text-gray-900 xl:px-6 px-2 py-4 text-left">
                                     ИНН
-                                </div>
-                                <div  className="text-sm font-medium text-gray-900 xl:px-6 px-2 py-4 text-left">
+                                </th>
+                                <th scope="col" className="text-sm font-medium text-gray-900 xl:px-6 px-2 py-4 text-left">
                                     Дата регистрации
-                                </div>
-                                <div className="text-sm font-medium text-gray-900 xl:px-6 px-2 py-4 text-left">
+                                </th>
+                                <th scope="col" className="text-sm font-medium text-gray-900 xl:px-6 px-2 py-4 text-left">
 
-                                </div>
-                            </div>
-                            <div>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
                                 {tableData}
-                            </div>
-                        </div>
+                            </tbody>
+                        </table>
                 </div>
         </div>
     )

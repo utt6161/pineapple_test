@@ -23,7 +23,7 @@ function TableItem(props: TableDataItemProps) {
     return (
         <>
             <tr className={("border-b" + (checked ? " bg-red-100" : ""))}>
-                <td className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4 whitespace-nowrap relative">
+                <td className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4 relative">
                     <label>
                         <input
                             className="form-check-input appearance-none h-8 w-8 border border-emerald-300 rounded-sm bg-white checked:border-red-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer"
@@ -49,25 +49,25 @@ function TableItem(props: TableDataItemProps) {
                         </div>}
                     </label>
                 </td>
-                <td className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4 whitespace-nowrap">
+                <td className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4 ">
                     {props.data.id}
                 </td>
-                <td className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4 whitespace-nowrap">
+                <td className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4 ">
                     {props.data.companyName}
                 </td>
-                <td className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4 max-w-full whitespace-nowrap">
+                <td className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4 ">
                     <InlineEditField value={props.data.address} id={props.data.id}/>
                 </td>
-                <td className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4 whitespace-nowrap">
+                <td className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4 ">
                     {props.data.ogrn}
                 </td>
-                <td className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4 whitespace-nowrap">
+                <td className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4 ">
                     {props.data.inn}
                 </td>
-                <td className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4 whitespace-nowrap">
+                <td className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4 ">
                     {props.data.regDate}
                 </td>
-                <td className="text-sm text-gray-900 font-light lg:px-6 px-2 py-4 whitespace-nowrap">
+                <td className="text-sm text-gray-900 font-light lg:px-6 px-2 py-4 ">
 
                     <button type="button" onClick={() => dispatch(removeEntry(props.data.id))}
                             className="p-3 m-auto">
