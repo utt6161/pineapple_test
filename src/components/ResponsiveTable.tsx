@@ -7,7 +7,7 @@ import {useSelector} from "react-redux";
 import {selectItems} from "../store/companySlice";
 
 export interface DataItemProps {
-    id?: number,
+    id: number,
     companyName: string,
     address: string,
     ogrn: string,

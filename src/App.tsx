@@ -17,8 +17,8 @@ function App() {
     }
 
     return (
-        <div className="flex h-screen bg-gray-200">
-            <div className="flex m-auto w-full h-4/6
+        <div className="flex min-h-screen bg-gray-200">
+            <div className="flex m-auto w-full min-h-4/6
                 sm:w-4/6 shadow-md border border-gray-200 rounded-lg bg-gray-100">
                 <div className="mx-auto mt-10">
                     <button type = "button"
