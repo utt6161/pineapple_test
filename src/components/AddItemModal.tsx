@@ -32,7 +32,6 @@ interface DadataAPI {
 }
 
 const fetchWithInn = (inn: string) => {
-    console.log(REACT_APP_API_KEY)
     return axios.get<DadataAPI>("https://api-fns.ru/api/search", {
             params: {
                 q: inn,
@@ -65,16 +64,14 @@ const AddItemModal = (props: AddItemModalProps) => {
     }
 
     const handleInn = () => {
-        console.log("handleInn")
         if (inn.length < 10) {
             triggerModalError("ИНН не соответствует формату")
-            console.log("<10")
         } else {
-            console.log("spot on")
+
             setSearch(true);
             fetchWithInn(inn)
                 .then((response) => {
-                    console.log(response)
+
                     if (response.data.Count == 0) {
                         triggerModalError("Компаний с таким ИНН не существует")
                     } else {
@@ -84,7 +81,7 @@ const AddItemModal = (props: AddItemModalProps) => {
                         setDate(response.data.items[0].ЮЛ.ДатаОГРН)
                     }
                 }).catch((e) => {
-                console.log(e)
+
                 triggerModalError(e.toString())
             }).finally(() => {
                 setSearch(false);
@@ -182,10 +179,20 @@ const AddItemModal = (props: AddItemModalProps) => {
                                 <InputField value={date} onChange={setDate} title="Дата регистрации" hint=""
                                             type={inputType.date}/>
                             </div>
-                            <div className="flex grow-0">
+                            <div className="flex grow-0 jutify-arund">
                                 <button type="submit"
                                         className="block rounded-md bg-emerald-400 mx-auto h-10 mb-5 transition duration-300 ease-out hover:bg-emerald-500">
                                     <span className="font-mono tracking-tighter p-4 text-white text-lg">Сохранить</span>
+                                </button>
+                                <button type="button" onClick={()=>{
+                                    setOrgName("ООО Рога и копыта")
+                                    setAddr("Мск, ул. Лесная, д 75")
+                                    setOgrn("1027739642281")
+                                    setDate("2018-02-28")
+                                    setInn("7710140679")
+                                }}
+                                        className="block rounded-md bg-emerald-400 mx-auto h-10 mb-5 transition duration-300 ease-out hover:bg-emerald-500">
+                                    <span className="font-mono tracking-tighter p-4 text-white text-lg">STUB</span>
                                 </button>
                             </div>
                         </form>

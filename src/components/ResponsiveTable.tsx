@@ -44,11 +44,10 @@ const ResponsiveTable = () => {
     // })
     const dataItems = useSelector(selectItems)
     console.log(dataItems)
-    console.log(dataItems.length)
     return (
         <>
             {/*{ isDesktopOrLaptop && <Table items={}/> }*/}
-            {dataItems.length == 0 && <div className="w-full mb-10">
+            {dataItems.length === 0 && <div className="w-full mb-10">
                 <div className="text-3xl text-emerald-500 text-left leading-tight h-3">“</div>
                     <p className="font-mono tracking-tighter text-xl text-gray-600 text-center px-4">Самое время для чего-то нового</p>
                 <div className="text-3xl text-emerald-500 text-right leading-tight h-3 -mt-3">”</div>
@@ -56,7 +55,7 @@ const ResponsiveTable = () => {
                 {/*    <p className="font-mono tracking-tighter text-md text-emerald-500 font-bold text-right">Unknown</p>*/}
                 {/*</div>*/}
             </div>}
-            {dataItems.length != 0 && <Table items={dataItems}/>}
+            {dataItems.length !== 0 && <Table items={dataItems}/>}
             {/*{ isTabletOrMobile && <MobileList items={}/>}*/}
         </>
 

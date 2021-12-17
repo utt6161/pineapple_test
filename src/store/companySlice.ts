@@ -26,6 +26,11 @@ export const companySlice = createSlice({
     } as CompanySliceInitState,
 
     reducers: {
+        updateAddrById: (state, action) => {
+            state.items.map(item => {
+                if(item.id === action.payload.id) item.address = action.payload.address
+            })
+        },
         addNewData: (state, action) => {
             state.items.push({
                 id: state.counter,
@@ -45,6 +50,13 @@ export const companySlice = createSlice({
                 state.checked = state.checked.filter((item) => item !== action.payload)
             } else state.checked.push(action.payload)
         },
+        allSwitcher: (state) => {
+            if(state.checked.length === state.items.length){
+                state.checked = []
+            } else {
+                state.checked = state.items.map( (item)=> item.id)
+            }
+        },
         checkAll: (state, action) => {
             state.checked.push( ...state.items.map((item)=>item.id) )
         },
@@ -53,6 +65,11 @@ export const companySlice = createSlice({
         },
         removeChecked: (state, action) => {
             state.checked = state.checked.filter((item) => item !== action.payload)
+        },
+        deleteChecked: (state) => {
+            console.log("delete checked")
+            state.items = state.items.filter((item) => !state.checked.includes(item.id))
+            state.checked = []
         }
     },
 })
@@ -60,6 +77,9 @@ export const companySlice = createSlice({
 
 export const selectItems = (state: RootState) => state.companyReducer.items
 export const selectChecked = (state:RootState) => state.companyReducer.checked
+export const selectIfAllChecked = (state: RootState) =>
+    (state.companyReducer.items.length !==0) && (state.companyReducer.items.length === state.companyReducer.checked.length)
+export const selectIfAnyChecked = (state: RootState) => state.companyReducer.checked.length !== 0
 
 // export const selectChecked = createSelector([checked, (checked: RootState, id: number) => id], ()
 
@@ -76,7 +96,10 @@ export const {
     removeChecked,
     checkAll,
     uncheckAll,
+    updateAddrById,
+    deleteChecked,
     switcher,
+    allSwitcher,
     removeEntry
 } = companySlice.actions
 
