@@ -3,6 +3,8 @@ var HtmlWebpackPlugin =  require('html-webpack-plugin');
 const tailwindcss = require('tailwindcss')
 const autoprefixer = require('autoprefixer')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const babelErrorBoundaries = require('@babel/plugin-transform-react-jsx-source')
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     entry : './src/index.tsx',
@@ -48,6 +50,8 @@ module.exports = {
             filename: 'src/styles/[name].[contenthash].css',
             chunkFilename: '[id].[contenthash].css',
         }),
+        new Dotenv()
+
     ]
 
 };
