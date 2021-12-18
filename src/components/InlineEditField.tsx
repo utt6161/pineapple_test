@@ -41,7 +41,7 @@ export const InlineEditField = (props: InlineEditFieldProps) => {
                 rows={4} cols={12}
                 onKeyDown={handleKeyDown}
                 onBlur={handleOnBlur}
-                // autoFocus
+                autoFocus
                 style={{resize: "none"}}
                 className="p-0 max-w-5/6 text-sm font-light text-base font-normal text-gray-700 bg-white border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-emerald-600 focus:outline-none"
             />}

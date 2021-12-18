@@ -24,7 +24,7 @@ const ResponsiveTable = () => {
     const isDesktopOrLaptop = useMediaQuery({
         query: '(min-width: 1224px)'
     })
-    const isTabletOrMobile = useMediaQuery({query: '(max-width: 1224px)'})
+    const isTabletOrMobile = useMediaQuery({query: '(max-width: 800px)'})
     // const dataItems = new Array<DataItemProps>({
     //     data: {
     //         companyName: "string",
@@ -47,7 +47,7 @@ const ResponsiveTable = () => {
     return (
         <>
             {/*{ isDesktopOrLaptop && <Table items={}/> }*/}
-            {dataItems.length === 0 && <div className="w-full mb-10">
+            {dataItems.length === 0 && <div className="mb-10 flex flex-wrap justify-center">
                 <div className="text-3xl text-emerald-500 text-left leading-tight h-3">“</div>
                     <p className="font-mono tracking-tighter text-xl text-gray-600 text-center px-4">Самое время для чего-то нового</p>
                 <div className="text-3xl text-emerald-500 text-right leading-tight h-3 -mt-3">”</div>
@@ -55,7 +55,8 @@ const ResponsiveTable = () => {
                 {/*    <p className="font-mono tracking-tighter text-md text-emerald-500 font-bold text-right">Unknown</p>*/}
                 {/*</div>*/}
             </div>}
-            {dataItems.length !== 0 && <Table items={dataItems}/>}
+            {dataItems.length !== 0 && !isTabletOrMobile && <Table items={dataItems}/>}
+            {dataItems.length !== 0 && isTabletOrMobile && <MobileList items={dataItems}/>}
             {/*{ isTabletOrMobile && <MobileList items={}/>}*/}
         </>
 

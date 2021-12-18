@@ -2,6 +2,7 @@ import React, {Dispatch, useState} from "react";
 import {removeEntry, selectChecked, switcher} from "../../store/companySlice"
 import {useDispatch, useSelector} from "react-redux";
 import {InlineEditField} from "../InlineEditField";
+import useLongPress from "../MobileList/longPressHook";
 
 
 export interface TableDataItemProps {
@@ -19,26 +20,24 @@ function TableItem(props: TableDataItemProps) {
     const dispatch = useDispatch();
     const checkedItems = useSelector(selectChecked)
     const checked = checkedItems.includes(props.data.id)
-
+    const longPress = useLongPress(()=>{
+        dispatch(switcher(props.data.id))
+    }, 500)
     return (
         <>
-            <tr className={("border-b" + (checked ? " bg-red-100" : ""))}>
-                <td className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4 relative">
+            <tr {...longPress} className={("border-b" + (checked ? " bg-red-100" : ""))}>
+                <td className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4">
                     <label>
-                        <input
-                            className="form-check-input appearance-none h-8 w-8 border border-emerald-300 rounded-sm bg-white checked:border-red-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer"
-                            type="checkbox" value={props.data.id}
-                            onChange={() => {
+                        <div
+                            className={"flex appearance-none h-8 w-8 rounded-sm focus:outline-none " +
+                                "transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain " +
+                                "float-left cursor-pointer"}
+                            onClick={() => {
                                 dispatch(switcher(props.data.id))
                             }}
-                            checked={checked}>
-                        </input>
-                        {checked && <div className="absolute top-1/2
-                        left-1/2
-                        -translate-x-1/2
-                        -translate-y-1/2">
-
-                            <svg className="h-8 w-8 text-red-500 cursor-pointer" width="24" height="24"
+                            >
+                            <svg className={(checked ? "text-red-500" : "text-emerald-500") + " h-8 w-8 m-auto cursor-pointer " +
+                                 "hover:rotate-45 transition duration-200"} width="24" height="24"
                                  viewBox="0 0 24 24"
                                  strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round"
                                  strokeLinejoin="round">
@@ -46,7 +45,8 @@ function TableItem(props: TableDataItemProps) {
                                 <line x1="12" y1="5" x2="12" y2="19"/>
                                 <line x1="5" y1="12" x2="19" y2="12"/>
                             </svg>
-                        </div>}
+                        </div>
+
                     </label>
                 </td>
                 <td className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4 ">

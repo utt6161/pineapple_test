@@ -24,7 +24,7 @@ function App() {
         <div className="flex min-h-screen bg-gray-200">
             <div className="flex m-auto w-full min-h-4/6
                 sm:w-5/6 shadow-md border border-gray-200 rounded-lg bg-gray-100">
-                <div className="mx-auto mt-10">
+                <div className="mx-auto mt-10 w-full">
                     <div className="flex flex-row justify-center">
                         {allChecked && <button type="button"
                                                className="block rounded-md bg-red-400 h-10 mb-5 mr-4 transition duration-300 ease-out hover:bg-red-500"
