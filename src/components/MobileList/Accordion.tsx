@@ -21,7 +21,7 @@ export const Accordion = (props: AccordionProps) => {
     return (
         <div className="box-content border-t border-gray-300">
             <div className="">
-                <div {...longPress} className = {(checked ? "bg-red-100" : "") + " flex flex-row justify-between h-10"}>
+                <div {...longPress} className = {(checked ? "bg-red-100" : "") + " flex flex-row justify-between py-2 min-h-10"}>
                     <div>{props.title}</div>
                     <div className="flex w-10 mx-2 border-x-2 border-emerald-400 rounded-sm"
                          onClick={() => setIsActive(!isActive)}>

@@ -50,7 +50,7 @@ function TableItem(props: TableDataItemProps) {
                     </label>
                 </td>
                 <td className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4 ">
-                    {props.data.id}
+                    {props.data.id+1}
                 </td>
                 <td className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4 ">
                     {props.data.companyName}

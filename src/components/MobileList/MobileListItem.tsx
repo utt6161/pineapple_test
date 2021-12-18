@@ -35,15 +35,16 @@ const MobileListItem = (props: MobileDataItemProps) => {
                             <line x1="15" y1="9" x2="9" y2="15"/>
                         </svg>
                     </button>
-                    <span className = "text-lg text-gray-900 font-light px-2 m-auto">
-                        <span className = "text-2xl">{props.data.id+1}</span>: {props.data.companyName}</span>
+                    <div className = "text-lg text-gray-900 font-light px-2 flex flex-row w-auto">
+                        <span className = "m-auto">{props.data.companyName}</span>
+                    </div>
                 </div>
             }>
                 <table className="w-full text-center">
                     <tbody>
                     <tr className="border border-t border-gray-300 text-md text-gray-900 font-light px-2 py-4">
-                        <td className="text-md text-gray-900 font-light xl:px-6 px-2 py-4 "><span>Адрес: </span></td>
-                        <td className="text-md text-gray-900 font-light xl:px-6 px-2 py-4 ">
+                        <td className="text-md text-gray-900 font-light xl:px-6 px-2 py-4"><span>Адрес: </span></td>
+                        <td className="text-md text-gray-900 font-light xl:px-6 px-2 py-4">
                             <InlineEditField value={props.data.address} id={props.data.id}/>
                         </td>
                     </tr>

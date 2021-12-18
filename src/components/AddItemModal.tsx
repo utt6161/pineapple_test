@@ -33,15 +33,17 @@ interface FnsApi {
 
 const fetchWithInn = (inn: string) => {
     // im running a proxy instance on heroku, to avoid f*ing CORS
+    // in case no proxy link present in env, goes with nothing and dies from cors, nice
     console.log(REACT_APP_PROXY_URL)
-    return axios.get<FnsApi>( REACT_APP_PROXY_URL + "api-fns.ru/api/search", {
+    return axios.get<FnsApi>( (REACT_APP_PROXY_URL !== undefined ? (REACT_APP_PROXY_URL + "api-fns.ru/api/search") : "https://api-fns.ru/api/search"), {
             params: {
                 q: inn,
                 key: REACT_APP_API_KEY
             },
-            headers:{
+            // headers for proxy server
+            headers: (REACT_APP_PROXY_URL ? {
                 "X-Requested-With": "XMLHttpRequest"
-            }
+            } : {})
         }
     )
 }
