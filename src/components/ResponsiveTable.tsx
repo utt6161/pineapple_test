@@ -46,10 +46,10 @@ const ResponsiveTable = () => {
     return (
         <>
             {/*{ isDesktopOrLaptop && <Table items={}/> }*/}
-            {dataItems.length === 0 && <div className="mb-10 flex flex-wrap justify-center">
-                <div className="text-3xl text-emerald-500 text-left leading-tight h-3">“</div>
-                    <p className="font-mono tracking-tighter text-xl text-gray-600 text-center px-4">Самое время для чего-то нового</p>
-                <div className="text-3xl text-emerald-500 text-right leading-tight h-3 -mt-3">”</div>
+            {dataItems.length === 0 && <div className="mb-10 flex justify-center flex-row justify-center">
+                <div className="text-3xl text-emerald-500 leading-tight h-3 mt-3 ml-1">“</div>
+                    <p className="font-mono tracking-tighter text-xl text-gray-600 text-center px-2">Самое время для чего-то нового</p>
+                <div className="text-3xl text-emerald-500 leading-tight h-3 -mt-3 mr-1">”</div>
                 {/*<div className="w-full">*/}
                 {/*    <p className="font-mono tracking-tighter text-md text-emerald-500 font-bold text-right">Unknown</p>*/}
                 {/*</div>*/}

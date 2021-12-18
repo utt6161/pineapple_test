@@ -36,7 +36,7 @@ const fetchWithInn = (inn: string) => {
             params: {
                 q: inn,
                 key: REACT_APP_API_KEY
-            }
+            },
         }
     )
 }
