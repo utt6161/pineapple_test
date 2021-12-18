@@ -21,14 +21,9 @@ export interface MobileDataItemProps {
 const MobileListItem = (props: MobileDataItemProps) => {
 
     const dispatch = useDispatch();
-    const checkedItems = useSelector(selectChecked)
-    const checked = checkedItems.includes(props.data.id)
-    const longPress = useLongPress(()=>{
-        dispatch(switcher(props.data.id))
-    }, 500)
     return (
-        <div {...longPress} className = {(checked ? "bg-red-100" : "")}>
-            <Accordion title={
+        <div>
+            <Accordion id = {props.data.id} title={
                 <div className="flex h-full">
                     <button type="button" onClick={() => dispatch(removeEntry(props.data.id))}
                                         className="px-2 m-auto">

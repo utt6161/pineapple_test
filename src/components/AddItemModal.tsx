@@ -4,7 +4,7 @@ import InputField from "./InputField";
 import {inputType} from "./InputField";
 import axios from "axios";
 import ErrorModal from "./ErrorModal";
-import {REACT_APP_API_KEY} from "../Env"
+import {REACT_APP_API_KEY, REACT_APP_PROXY_URL} from "../Env"
 import {useDispatch} from "react-redux";
 import {addNewData} from "../store/companySlice"
 
@@ -32,11 +32,16 @@ interface FnsApi {
 }
 
 const fetchWithInn = (inn: string) => {
-    return axios.get<FnsApi>("https://api-fns.ru/api/search", {
+    // im running a proxy instance on heroku, to avoid f*ing CORS
+    console.log(REACT_APP_PROXY_URL)
+    return axios.get<FnsApi>( REACT_APP_PROXY_URL + "api-fns.ru/api/search", {
             params: {
                 q: inn,
                 key: REACT_APP_API_KEY
             },
+            headers:{
+                "X-Requested-With": "XMLHttpRequest"
+            }
         }
     )
 }
@@ -71,6 +76,7 @@ const AddItemModal = (props: AddItemModalProps) => {
             setSearch(true);
             fetchWithInn(inn)
                 .then((response) => {
+                    console.log(response)
                     if (response.data.Count == 0) {
                         triggerModalError("Компаний с таким ИНН не существует")
                     } else {
@@ -80,7 +86,7 @@ const AddItemModal = (props: AddItemModalProps) => {
                         setDate(response.data.items[0].ЮЛ.ДатаОГРН)
                     }
                 }).catch((e) => {
-
+                console.log(e as string)
                 triggerModalError(e.toString())
             }).finally(() => {
                 setSearch(false);
