@@ -13,7 +13,7 @@ interface AddItemModalProps {
     status: boolean
 }
 
-interface DadataAPI {
+interface FnsApi {
     items: Array<{
         "ЮЛ": {
             "ИНН": number,
@@ -32,7 +32,7 @@ interface DadataAPI {
 }
 
 const fetchWithInn = (inn: string) => {
-    return axios.get<DadataAPI>("https://api-fns.ru/api/search", {
+    return axios.get<FnsApi>("https://api-fns.ru/api/search", {
             params: {
                 q: inn,
                 key: REACT_APP_API_KEY
@@ -71,7 +71,6 @@ const AddItemModal = (props: AddItemModalProps) => {
             setSearch(true);
             fetchWithInn(inn)
                 .then((response) => {
-
                     if (response.data.Count == 0) {
                         triggerModalError("Компаний с таким ИНН не существует")
                     } else {

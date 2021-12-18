@@ -50,7 +50,8 @@ module.exports = {
             filename: 'src/styles/[name].[contenthash].css',
             chunkFilename: '[id].[contenthash].css',
         }),
-        new Dotenv()
+        //to enable env vars from vercel
+        new Dotenv({ systemvars: true })
 
     ]
 

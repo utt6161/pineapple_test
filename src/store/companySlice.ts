@@ -67,7 +67,6 @@ export const companySlice = createSlice({
             state.checked = state.checked.filter((item) => item !== action.payload)
         },
         deleteChecked: (state) => {
-            console.log("delete checked")
             state.items = state.items.filter((item) => !state.checked.includes(item.id))
             state.checked = []
         }

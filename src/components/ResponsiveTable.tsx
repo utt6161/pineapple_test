@@ -43,7 +43,6 @@ const ResponsiveTable = () => {
     //     }
     // })
     const dataItems = useSelector(selectItems)
-    console.log(dataItems)
     return (
         <>
             {/*{ isDesktopOrLaptop && <Table items={}/> }*/}
