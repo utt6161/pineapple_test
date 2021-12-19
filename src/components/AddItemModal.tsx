@@ -117,6 +117,25 @@ const AddItemModal = (props: AddItemModalProps) => {
         props.closeModal()
     }
 
+    const stub = ()=>{
+        setOrgName("company")
+        setAddr("address")
+        setOgrn("ogrn")
+        setDate("2018-02-28")
+        setInn("inn ")
+    }
+    const bulkStub = ()=>{
+        for(let i = 0; i<23; i++){
+            dispatch(addNewData({
+                companyName: "company" + i,
+                address: "address" + i,
+                ogrn: "ogrn" + i,
+                inn: "inn" + i,
+                regDate: "2018-02-28"
+            }))
+        }
+        props.closeModal()
+    }
 
     return (
         <>
@@ -134,11 +153,12 @@ const AddItemModal = (props: AddItemModalProps) => {
                         w-full
                         bg-white
                         rounded-md
-                        shadow-lg p-4">
+                        shadow-lg px-4">
                     <div className="flex flex-col">
-                        <div className="flex grow-0 justify-end">
+                        <div className="flex justify-between pt-4">
+                            <span className = "text-lg text-gray-900 font-light border-b border-gray-400">Добавить компанию</span>
                             <button type="button" onClick={() => props.closeModal()}
-                                    className="p-3">
+                                    className="">
                                 <svg className="h-8 w-8 text-red-400" viewBox="0 0 24 24" fill="none"
                                      stroke="currentColor"
                                      strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -152,9 +172,11 @@ const AddItemModal = (props: AddItemModalProps) => {
                         <form onSubmit={(e)=>handleSave(e)}>
                             <div className="flex grow flex-col overflow-y">
                                 <InputField value={orgName} onChange={setOrgName} title="Наименование"
-                                            hint="ООО 'Нечто'"/>
+                                            hint="ООО 'Нечто'"
+                                            pattern={"[\\s\\S]{1,100}"}/>
                                 <InputField value={addr} onChange={setAddr} title="Адрес"
-                                            hint="Город, улица, фонарь, аптека"/>
+                                            hint="Город, улица, фонарь, аптека"
+                                            pattern={"[\\s\\S]{1,150}"}/>
                                 <InputField value={ogrn} onChange={setOgrn} title="ОГРН" hint="13 цифр"
                                             pattern={"[0-9]{13}"}/>
                                 <div className="flex flex-row justify-start">
@@ -166,7 +188,7 @@ const AddItemModal = (props: AddItemModalProps) => {
                                                                    handleInn()
                                                                }}
                                                                className="h-9 mb-6 ml-1 self-end rounded-md bg-emerald-400 transition duration-300 ease-out hover:bg-emerald-500">
-                                        <span className="font-mono tracking-tighter p-4 text-white text-lg">Найти</span>
+                                        <span className="font-mono tracking-tighter p-4 text-white text-lg">Загрузить</span>
                                     </button>}
 
                                     {searchProcess && <button type="button" disabled
@@ -186,20 +208,18 @@ const AddItemModal = (props: AddItemModalProps) => {
                                 <InputField value={date} onChange={setDate} title="Дата регистрации" hint=""
                                             type={inputType.date}/>
                             </div>
-                            <div className="flex grow-0 jutify-arund">
+                            <div className="flex grow-0 justify-around">
                                 <button type="submit"
                                         className="block rounded-md bg-emerald-400 mx-auto h-10 mb-5 transition duration-300 ease-out hover:bg-emerald-500">
                                     <span className="font-mono tracking-tighter p-4 text-white text-lg">Сохранить</span>
                                 </button>
-                                <button type="button" onClick={()=>{
-                                    setOrgName("ООО Рога и копыта")
-                                    setAddr("Мск, ул. Лесная, д 75")
-                                    setOgrn("1027739642281")
-                                    setDate("2018-02-28")
-                                    setInn("7710140679")
-                                }}
+                                <button type="button" onClick={()=>{stub()}}
                                         className="block rounded-md bg-emerald-400 mx-auto h-10 mb-5 transition duration-300 ease-out hover:bg-emerald-500">
                                     <span className="font-mono tracking-tighter p-4 text-white text-lg">STUB</span>
+                                </button>
+                                <button type="button" onClick={()=>{bulkStub()}}
+                                        className="block rounded-md bg-emerald-400 mx-auto h-10 mb-5 transition duration-300 ease-out hover:bg-emerald-500">
+                                    <span className="font-mono tracking-tighter p-4 text-white text-lg">BULK STUB</span>
                                 </button>
                             </div>
                         </form>

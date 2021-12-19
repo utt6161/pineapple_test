@@ -3,8 +3,67 @@ import {useMediaQuery} from "react-responsive";
 import Table from "./Table/Table";
 import MobileList from "./MobileList/MobileList";
 import {data} from "autoprefixer";
-import {useSelector} from "react-redux";
-import {selectItems} from "../store/companySlice";
+import {useDispatch, useSelector} from "react-redux";
+import {
+    selectAmountOfItemsPerPage,
+    selectByCurrentPage,
+    selectCurrentPage,
+    selectItems,
+    selectTotalPages,
+    setPage
+} from "../store/companySlice";
+import ReactPaginate from "react-paginate";
+
+const arrowPath =
+    'M869 487.8L491.2 159.9c-2.9-2.5-6.6-3.9-10.5-3.9h' +
+    '-88.5c-7.4 0-10.8 9.2-5.2 14l350.2 304H152c-4.4 0-8 3.6-8 8v' +
+    '60c0 4.4 3.6 8 8 8h585.1L386.9 854c-5.6 4.9-2.2 14 5.2 14h91' +
+    '.5c1.9 0 3.8-0.7 5.2-2L869 536.2c14.7-12.8 14.7-35.6 0-48.4z';
+
+const doublePath = [
+    'M533.2 492.3L277.9 166.1c-3-3.9-7.7-6.1-12.6-6.1H188c-6' +
+    '.7 0-10.4 7.7-6.3 12.9L447.1 512 181.7 851.1c-4.1 5.2-0' +
+    '.4 12.9 6.3 12.9h77.3c4.9 0 9.6-2.3 12.6-6.1l255.3-326.' +
+    '1c9.1-11.7 9.1-27.9 0-39.5z',
+    'M837.2 492.3L581.9 166.1c-3-3.9-7.7-6.1-12.6-6.1H492c-6' +
+    '.7 0-10.4 7.7-6.3 12.9L751.1 512 485.7 851.1c-4.1 5.2-0' +
+    '.4 12.9 6.3 12.9h77.3c4.9 0 9.6-2.3 12.6-6.1l255.3-326.' +
+    '1c9.1-11.7 9.1-27.9 0-39.5z',
+];
+
+const getSvgIcon = (path: any, reverse: boolean, type: string) => {
+    const paths = Array.isArray(path) ? path : [path];
+    const renderPaths = paths.map((p, i) => {
+        return <path key={i} d={p}/>;
+    });
+    return (
+        <i
+            className={`custom-icon-${type}`}
+            style={{
+                fontSize: '16px',
+            }}
+        >
+            <svg
+                viewBox="0 0 1024 1024"
+                width="1em"
+                height="1em"
+                fill="currentColor"
+                style={{
+                    verticalAlign: '-.125em',
+                    transform: `rotate(${(reverse && 180) || 0}deg)`,
+                }}
+            >
+                {renderPaths}
+            </svg>
+        </i>
+    );
+};
+
+const nextIcon = getSvgIcon(arrowPath, false, 'next');
+const prevIcon = getSvgIcon(arrowPath, true, 'prev');
+const jumpNextIcon = () => getSvgIcon(doublePath, false, 'jump-next');
+const jumpPrevIcon = () => getSvgIcon(doublePath, true, 'jump-prev');
+
 
 export interface DataItemProps {
     id: number,
@@ -19,36 +78,43 @@ export interface DataProps {
     items: DataItemProps[]
 }
 
-const ResponsiveTable = () => {
 
+const ResponsiveTable = () => {
     const isDesktopOrLaptop = useMediaQuery({
         query: '(min-width: 1224px)'
     })
+    const dispatch = useDispatch()
     const isTabletOrMobile = useMediaQuery({query: '(max-width: 800px)'})
-    // const dataItems = new Array<DataItemProps>({
-    //     data: {
-    //         companyName: "string",
-    //         address: "string",
-    //         ogrn: "string",
-    //         inn: "string",
-    //         regDate: new Date().toDateString()
-    //     }
-    // }, {
-    //     data: {
-    //         companyName: "string1",
-    //         address: "string1",
-    //         ogrn: "string1",
-    //         inn: "string1",
-    //         regDate: new Date().toDateString()
-    //     }
-    // })
-    const dataItems = useSelector(selectItems)
+    const dataItems = useSelector(selectByCurrentPage)
+    const currentPage = useSelector(selectCurrentPage)
+    const totalPages = useSelector(selectTotalPages)
+    const amountOfItemsPerPage = useSelector(selectAmountOfItemsPerPage)
+    const handleNewPage = (selectedItem: { selected: number; }) => {
+        dispatch(setPage(selectedItem.selected))
+    }
+
+    const iconsProps = {
+        prevIcon,
+        nextIcon,
+        jumpPrevIcon,
+        jumpNextIcon,
+    }
+    // page-ling
+    const pages = "w-full h-full"
+    const pagesDiv = "transition-all duration-300 hover:bg-emerald-400 text-gray-800 hover:text-white " +
+        "relative block mx-1 py-1.5 px-3 rounded-sm  border-x-2 border-emerald-400 bg-transparent outline-none"
+
+    const activePage = "w-full h-full"
+    const activePageDiv = "bg-emerald-400 text-white" +
+        "relative block mx-1 py-1.5 px-3 rounded-sm  border-x-2 border-emerald-400 bg-transparent outline-none"
+    // @ts-ignore
     return (
         <>
             {/*{ isDesktopOrLaptop && <Table items={}/> }*/}
             {dataItems.length === 0 && <div className="mb-10 flex justify-center flex-row justify-center">
                 <div className="text-3xl text-emerald-500 leading-tight h-3 mt-3 ml-1">“</div>
-                    <p className="font-mono tracking-tighter text-xl text-gray-600 text-center px-2">Самое время для чего-то нового</p>
+                <p className="font-mono tracking-tighter text-xl text-gray-600 text-center px-2">Самое время для чего-то
+                    нового</p>
                 <div className="text-3xl text-emerald-500 leading-tight h-3 -mt-3 mr-1">”</div>
                 {/*<div className="w-full">*/}
                 {/*    <p className="font-mono tracking-tighter text-md text-emerald-500 font-bold text-right">Unknown</p>*/}
@@ -56,7 +122,42 @@ const ResponsiveTable = () => {
             </div>}
             {dataItems.length !== 0 && !isTabletOrMobile && <Table items={dataItems}/>}
             {dataItems.length !== 0 && isTabletOrMobile && <MobileList items={dataItems}/>}
-            {/*{ isTabletOrMobile && <MobileList items={}/>}*/}
+            {/*<Pagination*/}
+            {/*    onChange={handleNewPage}*/}
+            {/*    current={currentPage}*/}
+            {/*    total={totalPages}*/}
+            {/*    showLessItems*/}
+            {/*    style={{ marginBottom: '2rem' }}*/}
+            {/*    {...iconsProps}*/}
+            {/*/>*/}
+                <ReactPaginate
+                    containerClassName={"flex flex-row justify-center w-full py-4"}
+
+                    nextLinkClassName={pages}
+                    nextClassName={pagesDiv}
+
+                    breakLinkClassName={pages}
+                    breakClassName={pagesDiv}
+
+                    pageLinkClassName={pages}
+                    pageClassName={pagesDiv}
+
+                    previousLinkClassName={pages}
+                    previousClassName={pagesDiv}
+
+                    activeLinkClassName={activePage}
+                    activeClassName={activePageDiv}
+
+                    breakLabel=".."
+                    nextLabel=">"
+                    marginPagesDisplayed={1}
+                    pageRangeDisplayed={1}
+                    onPageChange={handleNewPage}
+                    pageCount={totalPages}
+                    previousLabel="<"
+                    // @ts-ignore
+                    renderOnZeroPageCount={null}
+                />
         </>
 
     )

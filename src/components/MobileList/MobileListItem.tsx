@@ -45,7 +45,7 @@ const MobileListItem = (props: MobileDataItemProps) => {
                     <tr className="border border-t border-gray-300 text-md text-gray-900 font-light px-2 py-4">
                         <td className="text-md text-gray-900 font-light xl:px-6 px-2 py-4"><span>Адрес: </span></td>
                         <td className="text-md text-gray-900 font-light xl:px-6 px-2 py-4">
-                            <InlineEditField value={props.data.address} id={props.data.id}/>
+                            <InlineEditField maxlength = {150} value={props.data.address} id={props.data.id}/>
                         </td>
                     </tr>
                     <tr className="border border-t border-gray-300 text-md text-gray-900 font-light px-2 py-4">

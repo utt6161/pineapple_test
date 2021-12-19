@@ -5,6 +5,7 @@ import TableItem from "./TableItem";
 import {selectChecked, allSwitcher, selectIfAllChecked, switcher} from "../../store/companySlice";
 import {useDispatch, useSelector} from "react-redux";
 
+
 const Table = (props: DataProps) => {
 
     const tableData = props.items.map((value,number ) => {
@@ -70,6 +71,7 @@ const Table = (props: DataProps) => {
                             </tbody>
                         </table>
                 </div>
+
         </div>
     )
 }

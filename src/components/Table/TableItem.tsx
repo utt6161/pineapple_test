@@ -56,7 +56,7 @@ function TableItem(props: TableDataItemProps) {
                     {props.data.companyName}
                 </td>
                 <td className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4 ">
-                    <InlineEditField value={props.data.address} id={props.data.id}/>
+                    <InlineEditField maxlength = {150} value={props.data.address} id={props.data.id}/>
                 </td>
                 <td className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4 ">
                     {props.data.ogrn}
