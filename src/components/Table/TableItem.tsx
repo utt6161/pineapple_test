@@ -39,8 +39,8 @@ function TableItem(props: TableDataItemProps) {
                                 dispatch(switcher(props.data.id))
                             }}
                             >
-                            <svg className={(checked ? "text-red-500" : "text-emerald-500") + " h-8 w-8 m-auto cursor-pointer " +
-                                 "hover:rotate-45 transition duration-200"} width="24" height="24"
+                            <svg className={(checked ? "text-red-500 rotate-45 hover:rotate-0" : "hover:rotate-45 text-emerald-500") + " h-8 w-8 m-auto cursor-pointer " +
+                                 "transition duration-200"} width="24" height="24"
                                  viewBox="0 0 24 24"
                                  strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round"
                                  strokeLinejoin="round">

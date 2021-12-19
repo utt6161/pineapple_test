@@ -43,10 +43,10 @@ export const companySlice = createSlice({
             state.currentPage = ((action.payload > 0 && action.payload <= state.totalPages) ? action.payload : state.currentPage)
         },
         previousPage: (state) => {
-            if (state.currentPage > 0) state.currentPage--
+            if (state.currentPage > 1) state.currentPage--
         },
         nextPage: (state) => {
-            if (state.currentPage <= state.totalPages) state.currentPage++
+            if (state.currentPage < state.totalPages) state.currentPage++
         },
         updateAddrById: (state, action) => {
             state.items.map(item => {
@@ -59,14 +59,16 @@ export const companySlice = createSlice({
                 ...action.payload
             })
             state.counter = state.counter + 1
-            state.totalPages = Math.ceil(state.items.length / state.itemsPerPage);
+            let total = Math.ceil(state.items.length / state.itemsPerPage)
+            state.totalPages = total === 0 ? 1 : total;
             console.log(`new entry to data, current page: ${state.currentPage}, total pages: ${state.totalPages}, 
                 totalItems: ${state.items.length}, supposed new page ${state.items.length / state.itemsPerPage}`)
         },
         removeEntry: (state, action) => {
             state.items = state.items.filter((item) => item.id !== action.payload)
 
-            state.totalPages = Math.ceil(state.items.length / state.itemsPerPage);
+            let total = Math.ceil(state.items.length / state.itemsPerPage)
+            state.totalPages = total === 0 ? 1 : total;
             if(state.totalPages < state.currentPage) state.currentPage = state.totalPages
         },
         // addChecked: (state, action) => {
@@ -98,7 +100,8 @@ export const companySlice = createSlice({
             state.items = state.items.filter((item) => !state.checked.includes(item.id))
             state.checked = []
 
-            state.totalPages = Math.ceil(state.items.length / state.itemsPerPage);
+            let total = Math.ceil(state.items.length / state.itemsPerPage)
+            state.totalPages = total === 0 ? 1 : total;
             if(state.totalPages < state.currentPage) state.currentPage = state.totalPages
         }
     },
