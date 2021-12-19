@@ -22,7 +22,7 @@ function TableItem(props: TableDataItemProps) {
     const checked = checkedItems.includes(props.data.id)
     const longPress = useLongPress(()=>{
         dispatch(switcher(props.data.id))
-    }, 500)
+    }, 300)
     return (
         <>
             <tr {...longPress} className={("border-b" + (checked ? " bg-red-100" : ""))}>

@@ -31,7 +31,7 @@ export const companySlice = createSlice({
         counter: 0,
         checked: [],
         currentPage: 1,
-        totalPages: 0,
+        totalPages: 1,
         itemsPerPage: 5
     } as CompanySliceInitState,
 
@@ -39,14 +39,15 @@ export const companySlice = createSlice({
 
 
         setPage: (state, action) => {
+            console.log("setting page to: " + action.payload)
             state.currentPage = ((action.payload > 0 && action.payload <= state.totalPages) ? action.payload : state.currentPage)
         },
-        // previousPage: (state) => {
-        //     if (state.currentPage > 0) state.currentPage--
-        // },
-        // nextPage: (state) => {
-        //     if (state.currentPage <= state.totalPages) state.currentPage++
-        // },
+        previousPage: (state) => {
+            if (state.currentPage > 0) state.currentPage--
+        },
+        nextPage: (state) => {
+            if (state.currentPage <= state.totalPages) state.currentPage++
+        },
         updateAddrById: (state, action) => {
             state.items.map(item => {
                 if (item.id === action.payload.id) item.address = action.payload.address
@@ -58,13 +59,15 @@ export const companySlice = createSlice({
                 ...action.payload
             })
             state.counter = state.counter + 1
-            state.totalPages = Math.ceil((state.items.length - 1) / state.itemsPerPage + 1);
+            state.totalPages = Math.ceil(state.items.length / state.itemsPerPage);
+            console.log(`new entry to data, current page: ${state.currentPage}, total pages: ${state.totalPages}, 
+                totalItems: ${state.items.length}, supposed new page ${state.items.length / state.itemsPerPage}`)
         },
         removeEntry: (state, action) => {
             state.items = state.items.filter((item) => item.id !== action.payload)
 
-            state.totalPages = Math.ceil((state.items.length - 1) / state.itemsPerPage + 1);
-            if(state.totalPages > state.currentPage) state.currentPage--
+            state.totalPages = Math.ceil(state.items.length / state.itemsPerPage);
+            if(state.totalPages < state.currentPage) state.currentPage = state.totalPages
         },
         // addChecked: (state, action) => {
         //     state.checked.push(action.payload)
@@ -95,8 +98,8 @@ export const companySlice = createSlice({
             state.items = state.items.filter((item) => !state.checked.includes(item.id))
             state.checked = []
 
-            state.totalPages = Math.ceil((state.items.length - 1) / state.itemsPerPage + 1);
-            if(state.totalPages > state.currentPage) state.currentPage--
+            state.totalPages = Math.ceil(state.items.length / state.itemsPerPage);
+            if(state.totalPages < state.currentPage) state.currentPage = state.totalPages
         }
     },
 })
@@ -126,8 +129,8 @@ export const selectByCurrentPage = createSelector(
 export const {
     addNewData,
     setPage,
-    // previousPage,
-    // nextPage,
+    previousPage,
+    nextPage,
     // addChecked,
     // removeChecked,
     // checkAll,

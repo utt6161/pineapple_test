@@ -120,9 +120,9 @@ const AddItemModal = (props: AddItemModalProps) => {
     const stub = ()=>{
         setOrgName("company")
         setAddr("address")
-        setOgrn("ogrn")
+        setOgrn("4569782145542")
         setDate("2018-02-28")
-        setInn("inn ")
+        setInn("4569782145")
     }
     const bulkStub = ()=>{
         for(let i = 0; i<23; i++){
@@ -213,14 +213,16 @@ const AddItemModal = (props: AddItemModalProps) => {
                                         className="block rounded-md bg-emerald-400 mx-auto h-10 mb-5 transition duration-300 ease-out hover:bg-emerald-500">
                                     <span className="font-mono tracking-tighter p-4 text-white text-lg">Сохранить</span>
                                 </button>
-                                <button type="button" onClick={()=>{stub()}}
-                                        className="block rounded-md bg-emerald-400 mx-auto h-10 mb-5 transition duration-300 ease-out hover:bg-emerald-500">
-                                    <span className="font-mono tracking-tighter p-4 text-white text-lg">STUB</span>
-                                </button>
-                                <button type="button" onClick={()=>{bulkStub()}}
-                                        className="block rounded-md bg-emerald-400 mx-auto h-10 mb-5 transition duration-300 ease-out hover:bg-emerald-500">
-                                    <span className="font-mono tracking-tighter p-4 text-white text-lg">BULK STUB</span>
-                                </button>
+                                <div className = "flex flex-row">
+                                    <button type="button" onClick={()=>{stub()}}
+                                            className="block rounded-md bg-emerald-400 mx-auto h-10 mb-5 transition duration-300 ease-out hover:bg-emerald-500">
+                                        <span className="font-mono tracking-tighter p-4 text-white text-lg">TEST</span>
+                                    </button>
+                                    <button type="button" onClick={()=>{bulkStub()}}
+                                            className="block rounded-md bg-emerald-400 mx-auto h-10 mb-5 transition duration-300 ease-out hover:bg-emerald-500">
+                                        <span className="font-mono tracking-tighter p-4 text-white text-lg">BULK</span>
+                                    </button>
+                                </div>
                             </div>
                         </form>
                     </div>
