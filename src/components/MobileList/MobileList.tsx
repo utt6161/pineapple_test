@@ -1,6 +1,5 @@
 import React from "react";
 import {DataProps} from "../ResponsiveTable";
-import TableItem from "../Table/TableItem";
 import MobileListItem from "./MobileListItem";
 import {nanoid} from "@reduxjs/toolkit";
 

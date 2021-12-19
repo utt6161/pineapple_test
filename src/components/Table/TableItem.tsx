@@ -1,4 +1,4 @@
-import React, {Dispatch, useState} from "react";
+import React from "react";
 import {removeEntry, selectChecked, switcher} from "../../store/companySlice"
 import {useDispatch, useSelector} from "react-redux";
 import {InlineEditField} from "../InlineEditField";
@@ -20,6 +20,7 @@ function TableItem(props: TableDataItemProps) {
     const dispatch = useDispatch();
     const checkedItems = useSelector(selectChecked)
     const checked = checkedItems.includes(props.data.id)
+
     // not sure if i should do the same hold-select
     // functionality in these default tables
     const longPress = useLongPress(()=>{
@@ -58,7 +59,7 @@ function TableItem(props: TableDataItemProps) {
                     {props.data.companyName}
                 </td>
                 <td className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4 ">
-                    <InlineEditField maxlength = {150} value={props.data.address} id={props.data.id}/>
+                    <InlineEditField maxlength = {200} value={props.data.address} id={props.data.id}/>
                 </td>
                 <td className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4 ">
                     {props.data.ogrn}

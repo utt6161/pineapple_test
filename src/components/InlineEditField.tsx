@@ -1,4 +1,4 @@
-import React, {ChangeEventHandler, Dispatch, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {selectItems, updateAddrById} from "../store/companySlice"
 import TextareaAutosize from "react-textarea-autosize"
@@ -19,10 +19,6 @@ export const InlineEditField = (props: InlineEditFieldProps) => {
     const handleOnBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
         setEditMode(!editMode);
     }
-    const [textWidth, setTextWidth] = useState(0);
-    useEffect(() => {
-        setTextWidth(props.value.length);
-    }, [props.value.length]);
     const items = useSelector(selectItems)
 
     return (

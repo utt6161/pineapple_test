@@ -32,7 +32,7 @@ interface FnsApi {
 }
 
 const fetchWithInn = (inn: string) => {
-    // im running a proxy instance on heroku, to avoid f*ing CORS
+    // im running a proxy instance on vds, to avoid f*ing with CORS
     // in case no proxy link present in env, goes with nothing and dies from cors, nice
     console.log(REACT_APP_PROXY_URL)
     return axios.get<FnsApi>( (REACT_APP_PROXY_URL !== undefined ? (REACT_APP_PROXY_URL + "api-fns.ru/api/search") : "https://api-fns.ru/api/search"), {
@@ -215,7 +215,7 @@ const AddItemModal = (props: AddItemModalProps) => {
                                 </button>
                                 <div className = "flex flex-row">
                                     <button type="button" onClick={()=>{stub()}}
-                                            className="block rounded-md bg-emerald-400 mx-auto h-10 mb-5 transition duration-300 ease-out hover:bg-emerald-500">
+                                            className="mr-1 block rounded-md bg-emerald-400 mx-auto h-10 mb-5 transition duration-300 ease-out hover:bg-emerald-500">
                                         <span className="font-mono tracking-tighter p-4 text-white text-lg">TEST</span>
                                     </button>
                                     <button type="button" onClick={()=>{bulkStub()}}

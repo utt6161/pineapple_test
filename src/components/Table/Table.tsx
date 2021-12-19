@@ -1,8 +1,7 @@
-import React, {useState} from "react";
-import {useMediaQuery} from "react-responsive";
+import React from "react"
 import {DataProps} from "../ResponsiveTable";
 import TableItem from "./TableItem";
-import {selectChecked, allSwitcher, selectIfAllChecked, switcher} from "../../store/companySlice";
+import {allSwitcher, selectIfAllChecked} from "../../store/companySlice";
 import {useDispatch, useSelector} from "react-redux";
 import { nanoid } from '@reduxjs/toolkit'
 

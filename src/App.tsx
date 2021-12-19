@@ -1,8 +1,4 @@
 import React, {useState} from "react"
-//import Table from "./components/Table";
-//import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
-// import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
-import {useMediaQuery} from 'react-responsive'
 import ResponsiveTable from "./components/ResponsiveTable";
 import AddItemModal from "./components/AddItemModal";
 import {useDispatch, useSelector} from "react-redux";

@@ -1,11 +1,8 @@
 import React from "react";
-import {DataItemProps, DataProps} from "../ResponsiveTable";
-import {useDispatch, useSelector} from "react-redux";
-import {removeEntry, selectChecked, switcher} from "../../store/companySlice";
-import {Menu} from "@headlessui/react";
+import {useDispatch} from "react-redux";
+import {removeEntry} from "../../store/companySlice";
 import {Accordion} from "./Accordion"
 import {InlineEditField} from "../InlineEditField";
-import useLongPress from "./longPressHook";
 
 export interface MobileDataItemProps {
     data: {
@@ -45,7 +42,7 @@ const MobileListItem = (props: MobileDataItemProps) => {
                     <tr className="border border-t border-gray-300 text-md text-gray-900 font-light px-2 py-4">
                         <td className="text-md text-gray-900 font-light xl:px-6 px-2 py-4"><span>Адрес: </span></td>
                         <td className="text-md text-gray-900 font-light xl:px-6 px-2 py-4">
-                            <InlineEditField maxlength = {150} value={props.data.address} id={props.data.id}/>
+                            <InlineEditField maxlength = {200} value={props.data.address} id={props.data.id}/>
                         </td>
                     </tr>
                     <tr className="border border-t border-gray-300 text-md text-gray-900 font-light px-2 py-4">
