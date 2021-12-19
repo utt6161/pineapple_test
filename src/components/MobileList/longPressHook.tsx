@@ -6,7 +6,10 @@ export default function useLongPress(callback = () => {}, ms = 300) {
     useEffect(() => {
         let timerId: NodeJS.Timeout;
         if (startLongPress) {
-            timerId = setTimeout(callback, ms);
+            timerId = setTimeout(()=>{
+                stop()
+                callback()
+            }, ms);
         } else {
             // @ts-ignore
             clearTimeout(timerId);
@@ -26,9 +29,9 @@ export default function useLongPress(callback = () => {}, ms = 300) {
 
     return {
         onMouseDown: start,
-        onMouseUp: stop,
+        // onMouseUp: stop,
         onMouseLeave: stop,
         onTouchStart: start,
-        onTouchEnd: stop,
+        // onTouchEnd: stop,
     };
 }

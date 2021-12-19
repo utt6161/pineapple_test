@@ -4,12 +4,12 @@ import {DataProps} from "../ResponsiveTable";
 import TableItem from "./TableItem";
 import {selectChecked, allSwitcher, selectIfAllChecked, switcher} from "../../store/companySlice";
 import {useDispatch, useSelector} from "react-redux";
-
+import { nanoid } from '@reduxjs/toolkit'
 
 const Table = (props: DataProps) => {
 
     const tableData = props.items.map((value,number ) => {
-        return <TableItem key = {number} data={value}/>
+        return <TableItem key = {nanoid()} data={value}/>
     })
 
     const dispatch = useDispatch();
