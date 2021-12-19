@@ -46,7 +46,6 @@ const ResponsiveTable = () => {
     }
 
     const handleNewPage = (selectedItem: { selected: number; }) => {
-        console.log(selectedItem.selected+1)
         dispatch(setPage(selectedItem.selected+1))
     }
     // @ts-ignore

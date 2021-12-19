@@ -39,7 +39,6 @@ export const companySlice = createSlice({
 
 
         setPage: (state, action) => {
-            console.log("setting page to: " + action.payload)
             state.currentPage = ((action.payload > 0 && action.payload <= state.totalPages) ? action.payload : state.currentPage)
         },
         previousPage: (state) => {
@@ -61,8 +60,6 @@ export const companySlice = createSlice({
             state.counter = state.counter + 1
             let total = Math.ceil(state.items.length / state.itemsPerPage)
             state.totalPages = total === 0 ? 1 : total;
-            console.log(`new entry to data, current page: ${state.currentPage}, total pages: ${state.totalPages}, 
-                totalItems: ${state.items.length}, supposed new page ${state.items.length / state.itemsPerPage}`)
         },
         removeEntry: (state, action) => {
             state.items = state.items.filter((item) => item.id !== action.payload)

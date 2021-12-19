@@ -34,7 +34,6 @@ interface FnsApi {
 const fetchWithInn = (inn: string) => {
     // im running a proxy instance on vds, to avoid f*ing with CORS
     // in case no proxy link present in env, goes with nothing and dies from cors, nice
-    console.log(REACT_APP_PROXY_URL)
     return axios.get<FnsApi>( (REACT_APP_PROXY_URL !== undefined ? (REACT_APP_PROXY_URL + "api-fns.ru/api/search") : "https://api-fns.ru/api/search"), {
             params: {
                 q: inn,
@@ -78,7 +77,6 @@ const AddItemModal = (props: AddItemModalProps) => {
             setSearch(true);
             fetchWithInn(inn)
                 .then((response) => {
-                    console.log(response)
                     if (response.data.Count == 0) {
                         triggerModalError("Компаний с таким ИНН не существует")
                     } else {
@@ -88,7 +86,6 @@ const AddItemModal = (props: AddItemModalProps) => {
                         setDate(response.data.items[0].ЮЛ.ДатаОГРН)
                     }
                 }).catch((e) => {
-                console.log(e as string)
                 triggerModalError(e.toString())
             }).finally(() => {
                 setSearch(false);
