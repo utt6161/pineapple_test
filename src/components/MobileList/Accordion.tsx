@@ -17,7 +17,7 @@ export const Accordion = (props: AccordionProps) => {
     const dispatch = useDispatch();
     const longPress = useLongPress(() => {
         dispatch(switcher(props.id))
-    }, 500)
+    }, 200)
     return (
         <div className="box-content border-t border-gray-300">
             <div className="">

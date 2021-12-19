@@ -20,12 +20,14 @@ function TableItem(props: TableDataItemProps) {
     const dispatch = useDispatch();
     const checkedItems = useSelector(selectChecked)
     const checked = checkedItems.includes(props.data.id)
+    // not sure if i should do the same hold-select
+    // functionality in these default tables
     const longPress = useLongPress(()=>{
         dispatch(switcher(props.data.id))
     }, 300)
     return (
         <>
-            <tr {...longPress} className={("border-b" + (checked ? " bg-red-100" : ""))}>
+            <tr className={("border-b" + (checked ? " bg-red-100" : ""))}>
                 <td className="text-sm text-gray-900 font-light xl:px-6 px-2 py-4">
                     <label>
                         <div
