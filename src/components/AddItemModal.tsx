@@ -112,7 +112,7 @@ const fetchWithInn = (inn: string, companyType: CompanyType) => {
                             // some scary shit, not gonna lie
                             if(response.data.items[0].hasOwnProperty("ЮЛ")){
                                 // @ts-ignore
-                                setOrgName(response.data.items[0].ЮЛ.ФИОПолн)
+                                setOrgName(response.data.items[0].ЮЛ.НаимСокрЮЛ)
                                 // @ts-ignore
                                 setAddr(response.data.items[0].ЮЛ.АдресПолн)
                                 // @ts-ignore
@@ -121,7 +121,7 @@ const fetchWithInn = (inn: string, companyType: CompanyType) => {
                                 setDate(response.data.items[0].ЮЛ.ДатаОГРН)
                             } else {
                                 // @ts-ignore
-                                setOrgName("ИП " + response.data.items[0].ИП.НаимСокрЮЛ)
+                                setOrgName("ИП " + response.data.items[0].ИП.ФИОПолн)
                                 // @ts-ignore
                                 setAddr(response.data.items[0].ИП.АдресПолн)
                                 // @ts-ignore
