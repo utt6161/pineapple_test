@@ -99,10 +99,10 @@ const fetchWithInn = (inn: string, companyType: CompanyType) => {
         }
 
         const handleInn = () => {
-            if (inn.length < 10 || inn.length < 12) {
+            if (inn.length != 10 && inn.length != 12) {
                 triggerModalError("ИНН не соответствует формату")
             } else {
-                let innType = inn.length < 10 ? CompanyType.CN : CompanyType.IP
+                let innType = inn.length != 10 ? CompanyType.CN : CompanyType.IP
                 setSearch(true);
                 fetchWithInn(inn, innType)
                     .then((response) => {
