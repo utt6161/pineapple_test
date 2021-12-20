@@ -217,11 +217,11 @@ const fetchWithInn = (inn: string, companyType: CompanyType) => {
                                     <InputField value={orgName} onChange={setOrgName} title="Наименование"
                                                 hint="ООО 'Нечто'"
                                                 pattern={"[\\s\\S]{1,200}"}
-                                                onInvalid={"От 1 до 100 символов"}/>
+                                                onInvalid={"От 1 до 200 символов"}/>
                                     <InputField value={addr} onChange={setAddr} title="Адрес"
                                                 hint="Город, улица, фонарь, аптека"
                                                 pattern={"[\\s\\S]{1,200}"}
-                                                onInvalid={"От 1 до 100 символов"}/>
+                                                onInvalid={"От 1 до 200 символов"}/>
                                     <InputField value={ogrn} onChange={setOgrn} title="ОГРН" hint="ИП: 15 цифр, Иные: 13 цифр"
                                                 pattern={"[0-9]{13}|[0-9]{15}"}
                                                 onInvalid={"Либо 13 либо 15 цифр"}/>
