@@ -1,11 +1,13 @@
 import React from "react";
 import {DataProps} from "../ResponsiveTable";
 import MobileListItem from "./MobileListItem";
-import {nanoid} from "@reduxjs/toolkit";
+import {useSelector} from "react-redux";
+import {selectCurrentPage} from "../../store/companySlice";
 
 const MobileList = (props: DataProps) => {
+    const currentPage = useSelector(selectCurrentPage)
     const mobileTableData = props.items.map((value,number ) => {
-        return <MobileListItem key = {nanoid()} data={value}/>
+        return <MobileListItem key = {(currentPage * 10) + number} data={value}/>
     })
     return (
 

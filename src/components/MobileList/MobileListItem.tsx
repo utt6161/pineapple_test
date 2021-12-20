@@ -59,7 +59,9 @@ const MobileListItem = (props: MobileDataItemProps) => {
                     </tr>
                     </tbody>
                 </table>
+
             </Accordion>
+
         </div>
     )
 }

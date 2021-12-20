@@ -17,16 +17,19 @@ export const Accordion = (props: AccordionProps) => {
     const dispatch = useDispatch();
     const longPress = useLongPress(() => {
         dispatch(switcher(props.id))
-    }, 350)
+    }, 50)
+    const onClick = () => {
+        dispatch(switcher(props.id))
+    }
     return (
         <div className="box-content border-t border-gray-300">
             <div className="">
-                <div {...longPress} className = {(checked ? "bg-red-100" : "") + " flex flex-row justify-between py-2 min-h-10"}>
-                    <div>{props.title}</div>
+                <div className = {(checked ? "bg-red-100" : "") + " flex flex-row justify-between py-2 min-h-10"}>
+                    <div className="w-full flex flex-row justify-start" onClick = {onClick}>{props.title}</div>
                     <div className="flex w-10 mx-2 border-x-2 border-emerald-400 rounded-sm"
                          onClick={() => setIsActive(!isActive)}>
                         {isActive ?
-                            <svg className="m-auto h-8 w-8 text-green-500" width="24" height="24" viewBox="0 0 24 24"
+                            <svg className="h-8 w-8 text-green-500" width="24" height="24" viewBox="0 0 24 24"
                                  strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round"
                                  strokeLinejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z"/>
