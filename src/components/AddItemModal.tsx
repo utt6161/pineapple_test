@@ -216,15 +216,19 @@ const fetchWithInn = (inn: string, companyType: CompanyType) => {
                                 <div className="flex grow flex-col overflow-y">
                                     <InputField value={orgName} onChange={setOrgName} title="Наименование"
                                                 hint="ООО 'Нечто'"
-                                                pattern={"[\\s\\S]{1,100}"}/>
+                                                pattern={"[\\s\\S]{1,100}"}
+                                                onInvalid={"От 1 до 100 символов"}/>
                                     <InputField value={addr} onChange={setAddr} title="Адрес"
                                                 hint="Город, улица, фонарь, аптека"
-                                                pattern={"[\\s\\S]{1,150}"}/>
-                                    <InputField value={ogrn} onChange={setOgrn} title="ОГРН" hint="13 цифр"
-                                                pattern={"[0-9]{13}"}/>
-                                    <div className="flex flex-row justify-start">
-                                        <InputField value={inn} onChange={setInn} title="ИНН" hint="10 цифр"
-                                                    pattern={"[0-9]{10}"}/>
+                                                pattern={"[\\s\\S]{1,150}"}
+                                                onInvalid={"От 1 до 100 символов"}/>
+                                    <InputField value={ogrn} onChange={setOgrn} title="ОГРН" hint="ИП: 15 цифр, Иные: 13 цифр"
+                                                pattern={"[0-9]{13}|[0-9]{15}"}
+                                                onInvalid={"Либо 13 либо 15 цифр"}/>
+                                    <div className="flex flex-row">
+                                        <InputField value={inn} onChange={setInn} title="ИНН" hint="ИП: 12 цифр, Иные: 10 цифр"
+                                                    pattern={"[0-9]{10}|[0-9]{12}"}
+                                                    onInvalid={"Либо 10 либо 12 цифр"}/>
 
                                         {!searchProcess && <button type="button"
                                                                    onClick={() => {
