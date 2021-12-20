@@ -32,7 +32,7 @@ export const companySlice = createSlice({
         checked: [],
         currentPage: 1,
         totalPages: 1,
-        itemsPerPage: 5
+        itemsPerPage: 6
     } as CompanySliceInitState,
 
     reducers: {

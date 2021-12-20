@@ -22,7 +22,7 @@ export const Accordion = (props: AccordionProps) => {
         dispatch(switcher(props.id))
     }
     return (
-        <div className="box-content border-t border-gray-300">
+        <div className="box-content border-t border-gray-300 overflow-x-auto">
             <div className="">
                 <div className = {(checked ? "bg-red-100" : "") + " flex flex-row justify-between py-2 min-h-10"}>
                     <div className="w-full flex flex-row justify-start">{props.title}</div>

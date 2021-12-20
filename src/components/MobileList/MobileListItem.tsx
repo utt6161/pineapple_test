@@ -36,7 +36,7 @@ const MobileListItem = (props: MobileDataItemProps) => {
                         </svg>
                     </button>
                     <div className = "text-lg text-gray-900 font-light px-2 flex flex-row w-full"  onClick = {onClick} >
-                        <span className = "m-auto">{props.data.companyName}</span>
+                        <span className = "m-auto text-center">{props.data.companyName}</span>
                     </div>
                 </div>
             }>

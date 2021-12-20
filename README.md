@@ -12,7 +12,7 @@ or
 yarn install
 ```
 
-Create .env file with/export into env REACT_APP_API_KEY, obtained from api-fns and (optionally) REACT_APP_PROXY_URL, so there is no problem with CORS
+Create .env file with/export into env REACT_APP_API_KEY, obtained from api-fns and (optionally) REACT_APP_PROXY_URL, so there is no problem with CORS, in case you dont specify proxy url, it will work just fine with browser-extension that would disable cors or in chrome insecure mode
 
 Run for dev: 
 ```console
