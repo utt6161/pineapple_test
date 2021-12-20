@@ -63,6 +63,7 @@ export const companySlice = createSlice({
         },
         removeEntry: (state, action) => {
             state.items = state.items.filter((item) => item.id !== action.payload)
+            state.checked = state.checked.filter((item) => item !== action.payload)
 
             let total = Math.ceil(state.items.length / state.itemsPerPage)
             state.totalPages = total === 0 ? 1 : total;

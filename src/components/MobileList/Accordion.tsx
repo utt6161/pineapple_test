@@ -25,7 +25,7 @@ export const Accordion = (props: AccordionProps) => {
         <div className="box-content border-t border-gray-300">
             <div className="">
                 <div className = {(checked ? "bg-red-100" : "") + " flex flex-row justify-between py-2 min-h-10"}>
-                    <div className="w-full flex flex-row justify-start" onClick = {onClick}>{props.title}</div>
+                    <div className="w-full flex flex-row justify-start">{props.title}</div>
                     <div className="flex w-10 mx-2 border-x-2 border-emerald-400 rounded-sm"
                          onClick={() => setIsActive(!isActive)}>
                         {isActive ?

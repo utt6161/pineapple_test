@@ -1,6 +1,6 @@
 import React from "react";
 import {useDispatch} from "react-redux";
-import {removeEntry} from "../../store/companySlice";
+import {removeEntry, switcher} from "../../store/companySlice";
 import {Accordion} from "./Accordion"
 import {InlineEditField} from "../InlineEditField";
 
@@ -18,10 +18,13 @@ export interface MobileDataItemProps {
 const MobileListItem = (props: MobileDataItemProps) => {
 
     const dispatch = useDispatch();
+    const onClick = () => {
+        dispatch(switcher(props.data.id))
+    }
     return (
         <div>
             <Accordion id = {props.data.id} title={
-                <div className="flex h-full">
+                <div className="flex h-full w-full">
                     <button type="button" onClick={() => dispatch(removeEntry(props.data.id))}
                                         className="px-2 m-auto">
                         <svg className="h-8 w-8 text-red-500 transition duration-300 ease-out
@@ -32,7 +35,7 @@ const MobileListItem = (props: MobileDataItemProps) => {
                             <line x1="15" y1="9" x2="9" y2="15"/>
                         </svg>
                     </button>
-                    <div className = "text-lg text-gray-900 font-light px-2 flex flex-row w-auto">
+                    <div className = "text-lg text-gray-900 font-light px-2 flex flex-row w-full"  onClick = {onClick} >
                         <span className = "m-auto">{props.data.companyName}</span>
                     </div>
                 </div>
