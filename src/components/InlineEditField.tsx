@@ -16,6 +16,7 @@ export const InlineEditField = (props: InlineEditFieldProps) => {
             setEditMode(!editMode);
         }
     }
+
     const handleOnBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
         setEditMode(!editMode);
     }
@@ -31,8 +32,8 @@ export const InlineEditField = (props: InlineEditFieldProps) => {
             {editMode && <TextareaAutosize
                 value={items[items.findIndex(item => item.id === props.id)].address}
                 onChange={(e) => {
-                    dispatch(updateAddrById({address: e.target.value, id: props.id}))
-                }
+                        dispatch(updateAddrById({address: e.target.value, id: props.id}))
+                    }
                 }
                 // rows={4} cols={12}
                 maxRows={5}

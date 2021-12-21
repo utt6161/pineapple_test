@@ -1,4 +1,4 @@
-import React, {FormEventHandler, useState} from "react";
+import React, {Dispatch, FormEventHandler, useCallback, useEffect, useRef, useState} from "react";
 import uniqueId from "lodash.uniqueid"
 
 export enum inputType{
@@ -14,12 +14,14 @@ interface InputFieldProps {
     onInvalid?: string,
     type?: inputType,
     value: any,
-    onChange: (arg:string)=>void
+    onChange: Dispatch<string>
 }
 
 const InputField  = ({title, hint, pattern, type, value, onChange, onInvalid}: InputFieldProps) => {
     const [ id ] = useState(uniqueId('id-'))
     const handleOnInvalid = (e: React.ChangeEvent<HTMLInputElement>) => {
+        // console.log("input insnt valid, value: " + e.target.value)
+        // console.log(e.target.pattern)
         if (onInvalid != null) {
             e.target.setCustomValidity(onInvalid)
         }
@@ -28,16 +30,25 @@ const InputField  = ({title, hint, pattern, type, value, onChange, onInvalid}: I
         e.target.setCustomValidity("")
     }
 
+    const inputRef = useRef(null);
+    useEffect(()=>{
+        // @ts-ignore
+        inputRef.current.setCustomValidity('');
+        // @ts-ignore
+        inputRef.current.checkValidity();
+    }, [value])
+
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         onChange(e.target.value)
-        e.target.setCustomValidity("")
     }
+
     return (
         <div className="form-group mb-6 w-full">
             <label htmlFor={id} className="form-label inline-block mb-2 text-gray-700">{title}</label>
-            <input value = {value}
+            <input ref={inputRef}
+                    value = {value}
                    onChange={(value)=>handleOnChange(value)}
-                   required type={type} pattern = {pattern}
+                   type={type} pattern = {pattern}
                    onInvalid = {handleOnInvalid}
                    className="form-control block
         w-full

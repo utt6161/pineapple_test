@@ -8,7 +8,7 @@ import { nanoid } from '@reduxjs/toolkit'
 const Table = (props: DataProps) => {
 
     const tableData = props.items.map((value,number ) => {
-        return <TableItem key = {nanoid()} data={value}/>
+        return <TableItem key = {value.id} data={value}/>
     })
 
     const dispatch = useDispatch();

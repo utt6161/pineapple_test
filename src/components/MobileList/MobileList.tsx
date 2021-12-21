@@ -7,9 +7,7 @@ import {selectCurrentPage} from "../../store/companySlice";
 const MobileList = (props: DataProps) => {
     const currentPage = useSelector(selectCurrentPage)
     const mobileTableData = props.items.map((value,number ) => {
-        // adding id to that multiplication seems obsolete, but i dont remember why
-        // i did that in a first place, so i wont touch it, just to be sure
-        return <MobileListItem key = {(currentPage * 10) + value.id} data={value}/>
+        return <MobileListItem key = {value.id} data={value}/>
     })
     return (
 

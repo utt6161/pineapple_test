@@ -146,7 +146,7 @@ const fetchWithInn = (inn: string, companyType: CompanyType) => {
             setDate("")
         }
 
-        const handleSave = (e: React.SyntheticEvent) => {
+        const handleSave = (e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault();
             dispatch(addNewData({
                 companyName: orgName,
