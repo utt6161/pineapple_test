@@ -49,7 +49,7 @@ const InputField  = ({title, hint, pattern, type, value, onChange, onInvalid}: I
                     value = {value}
                    onChange={(value)=>handleOnChange(value)}
                    type={type} pattern = {pattern}
-                   onInvalid = {handleOnInvalid}
+                   required onInvalid = {handleOnInvalid}
                    className="form-control block
         w-full
         px-3
